@@ -25,7 +25,7 @@ public class AdminController : ControllerBase
     [HttpGet()]
     public async Task<IActionResult> ObtenerShow()
     {
-        await _tvMazeService.ObtenerShow();
-        return Ok();
+        var datos = await _tvMazeService.ObtenerShow();
+        return Ok(datos);
     }
 }

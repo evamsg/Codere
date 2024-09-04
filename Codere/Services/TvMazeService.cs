@@ -57,8 +57,10 @@ namespace Codere.Services
                     nuevoShow.Status = show.Status;
                     nuevoShow.Runtime = show.Runtime;
                     nuevoShow.AverageRuntime = show.AverageRuntime;
-                    if(show.Premiered != null) nuevoShow.Premiered = show.Premiered;
+                    if (show.Premiered != null) nuevoShow.Premiered = show.Premiered;
+                    else nuevoShow.Premiered = null;
                     if (show.Ended != null) nuevoShow.Ended = show.Ended;
+                    else nuevoShow.Ended = null;
                     nuevoShow.OfficialSite = show.OfficialSite;
                     nuevoShow.Weight = show.Weight;
                     nuevoShow.Summary = show.Summary;
