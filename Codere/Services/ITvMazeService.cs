@@ -6,6 +6,6 @@ namespace Codere.Services
     {
         Task FetchAndStoreShowsAsync();
 
-        Task<List<Show>> ObtenerShow();
+        Task<List<dynamic>> ObtenerShow();
     }
 }

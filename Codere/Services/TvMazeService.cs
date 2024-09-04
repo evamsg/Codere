@@ -387,18 +387,96 @@ namespace Codere.Services
             }
         }
 
-        public async Task<List<Show>> ObtenerShow()
+        public async Task<List<dynamic>> ObtenerShow()
         {
             // return await _context.Shows.ToListAsync();
-            return await _context.Shows.Include(s => s.WebChannel) // Carga WebChannel
-                .Include(s => s.Schedule) // Carga Schedule
-                .Include(s => s.Network) // Carga Network
-                .Include(s => s.External) // Carga External
-                .Include(s => s.Image) // Carga Image
-                .Include(s => s.Link) // Carga Link
-                .Include(s => s.DvdCountry) // Carga DvdCountry
-                .Include(s => s.PreviousEpisode) // Carga PreviousEpisode
-                .Include(s => s.Rating).ToListAsync(); // Carga Rating
+
+            //return await _context.Shows.Include(s => s.WebChannel) // Carga WebChannel
+            //    .Include(s => s.Schedule) // Carga Schedule
+            //    .Include(s => s.Network) // Carga Network
+            //    .Include(s => s.External) // Carga External
+            //    .Include(s => s.Image) // Carga Image
+            //    .Include(s => s.Link) // Carga Link
+            //    .Include(s => s.DvdCountry) // Carga DvdCountry
+            //    .Include(s => s.PreviousEpisode) // Carga PreviousEpisode
+            //    .Include(s => s.Rating).ToListAsync(); // Carga Rating
+
+            var result = await _context.Shows
+                .Select(show => new
+                {
+                    show.Id,
+                    show.Name,
+                    show.Url,
+                    show.Language,
+                    show.Genres,
+                    show.Status,
+                    show.Runtime,
+                    show.AverageRuntime,
+                    show.Premiered,
+                    show.Ended,
+                    show.OfficialSite,
+                    show.Weight,
+                    show.Summary,
+                    show.Updated,
+                    show.Rating_Average,
+                    WebChannel = show.WebChannel != null ? new
+                    {
+                        show.WebChannel.Name,
+                        show.WebChannel.OfficialSite
+                    } : null,
+                    Schedule = show.Schedule != null ? new
+                    {
+                        show.Schedule.Time,
+                        show.Schedule.Day
+                    } : null,
+                    Network = show.Network != null ? new
+                    {
+                        show.Network.Name,
+                        show.Network.OfficialSite,
+                        Country = show.Network.Country != null ? new
+                        {
+                            show.Network.Country.Name,
+                            show.Network.Country.Code,
+                            show.Network.Country.TimeZone
+                        } : null
+                    } : null,
+                    External = show.External != null ? new
+                    {
+                        show.External.Tvrage,
+                        show.External.Thetvdb,
+                        show.External.Imdb
+                    } : null,
+                    Image = show.Image != null ? new
+                    {
+                        show.Image.Medium,
+                        show.Image.Original
+                    } : null,
+                    Link = show.Link != null ? new
+                    {
+                        show.Link.Self_Href,
+                        show.Link.Previousepisode_Href,
+                        show.Link.Previousepisode_Name
+                    } : null,
+                    DvdCountry = show.DvdCountry != null ? new
+                    {
+                        show.DvdCountry.Name,
+                        show.DvdCountry.Code,
+                        show.DvdCountry.TimeZone
+                    } : null,
+                    PreviousEpisode = show.PreviousEpisode != null ? new
+                    {
+                        show.PreviousEpisode.Href,
+                        show.PreviousEpisode.Name
+                    } : null,
+                    Rating = show.Rating != null ? new
+                    {
+                        show.Rating.Average
+                    } : null
+                })
+                .ToListAsync();
+
+            var dynamicResult = result.Select(item => (dynamic)item).ToList();
+            return dynamicResult;
         }
     }
 }
