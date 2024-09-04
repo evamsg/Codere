@@ -38,14 +38,17 @@ namespace Codere.Contexto
             WebChannelEntnityConfig.SetWebChannelEntityConfig(modelBuilder.Entity<WebChannel>());
             PreviousEpisodeEntityConfig.SetPreviousEpisodeEntityConfig(modelBuilder.Entity<PreviousEpisode>());
 
+            modelBuilder.Entity<Country>().HasKey(e => e.Id_key);
             modelBuilder.Entity<Country>()
         .Property(x => x.Id_key)
         .ValueGeneratedOnAdd();
 
+            modelBuilder.Entity<DvdCountry>().HasKey(e => e.Id_key);
             modelBuilder.Entity<DvdCountry>()
         .Property(x => x.Id_key)
         .ValueGeneratedOnAdd();
 
+            modelBuilder.Entity<External>().HasKey(e => e.Id_key);
             modelBuilder.Entity<External>()
         .Property(x => x.Id_key)
         .ValueGeneratedOnAdd();
@@ -54,109 +57,99 @@ namespace Codere.Contexto
         .Property(x => x.Id_key)
         .ValueGeneratedOnAdd();
 
+            modelBuilder.Entity<Link>().HasKey(e => e.Id_key);
             modelBuilder.Entity<Link>()
         .Property(x => x.Id_key)
         .ValueGeneratedOnAdd();
 
+            modelBuilder.Entity<Network>().HasKey(e => e.Id_key);
             modelBuilder.Entity<Network>()
         .Property(x => x.Id_key)
         .ValueGeneratedOnAdd();
 
+            modelBuilder.Entity<PreviousEpisode>().HasKey(e => e.Id_key);
             modelBuilder.Entity<PreviousEpisode>()
         .Property(x => x.Id_key)
         .ValueGeneratedOnAdd();
 
+            modelBuilder.Entity<Rating>().HasKey(e => e.Id_key);
             modelBuilder.Entity<Rating>()
         .Property(x => x.Id_key)
         .ValueGeneratedOnAdd();
 
+            modelBuilder.Entity<Schedule>().HasKey(e => e.Id_key);
             modelBuilder.Entity<Schedule>()
         .Property(x => x.Id_key)
         .ValueGeneratedOnAdd();
 
+            modelBuilder.Entity<ShowGenre>().HasKey(e => e.Id_key);
             modelBuilder.Entity<ShowGenre>()
         .Property(x => x.Id_key)
         .ValueGeneratedOnAdd();
 
+            modelBuilder.Entity<WebChannel>().HasKey(e => e.Id_key);
             modelBuilder.Entity<WebChannel>()
         .Property(x => x.Id_key)
         .ValueGeneratedOnAdd();
 
+            modelBuilder.Entity<Show>().HasKey(e => e.IdKey); // Define la clave primaria
             modelBuilder.Entity<Show>()
         .Property(x => x.IdKey)
         .ValueGeneratedOnAdd();
 
             modelBuilder.Entity<Show>()
-           .HasOne(s => s.DvdCountry)
-           .WithOne(sd => sd.Show)
-           .HasForeignKey<DvdCountry>(sd => sd.Show_Id);
-
-            modelBuilder.Entity<DvdCountry>()
-        .HasKey(sd => sd.Show_Id);
+        .HasOne(s => s.DvdCountry)
+        .WithOne(sd => sd.Show)
+        .HasForeignKey<DvdCountry>(sd => sd.Show_Id) // Clave foránea en Schedule
+        .HasPrincipalKey<Show>(s => s.Id); // Clave principal no primaria en Show
 
             modelBuilder.Entity<Show>()
-          .HasOne(s => s.External)
-          .WithOne(sd => sd.Show)
-          .HasForeignKey<External>(sd => sd.Show_Id);
-
-            modelBuilder.Entity<External>()
-        .HasKey(sd => sd.Show_Id);
+         .HasOne(s => s.External)
+         .WithOne(sd => sd.Show)
+         .HasForeignKey<External>(sd => sd.Show_Id) // Clave foránea en Schedule
+         .HasPrincipalKey<Show>(s => s.Id); // Clave principal no primaria en Show
 
             modelBuilder.Entity<Show>()
-          .HasOne(s => s.Image)
-          .WithOne(sd => sd.Show)
-          .HasForeignKey<Image>(sd => sd.Show_Id);
-
-            modelBuilder.Entity<Image>()
-        .HasKey(sd => sd.Show_Id);
+        .HasOne(s => s.Image)
+        .WithOne(sd => sd.Show)
+        .HasForeignKey<Image>(sd => sd.Show_Id) // Clave foránea en Schedule
+        .HasPrincipalKey<Show>(s => s.Id); // Clave principal no primaria en Show
 
             modelBuilder.Entity<Show>()
-          .HasOne(s => s.Link)
-          .WithOne(sd => sd.Show)
-          .HasForeignKey<Link>(sd => sd.Show_Id);
-
-            modelBuilder.Entity<Link>()
-        .HasKey(sd => sd.Show_Id);
+        .HasOne(s => s.Link)
+        .WithOne(sd => sd.Show)
+        .HasForeignKey<Link>(sd => sd.Show_Id) // Clave foránea en Schedule
+        .HasPrincipalKey<Show>(s => s.Id); // Clave principal no primaria en Show
 
             modelBuilder.Entity<Show>()
-          .HasOne(s => s.Network)
-          .WithOne(sd => sd.Show)
-          .HasForeignKey<Network>(sd => sd.Show_Id);
-
-            modelBuilder.Entity<Network>()
-        .HasKey(sd => sd.Show_Id);
+        .HasOne(s => s.Network)
+        .WithOne(sd => sd.Show)
+        .HasForeignKey<Network>(sd => sd.Show_Id) // Clave foránea en Schedule
+        .HasPrincipalKey<Show>(s => s.Id); // Clave principal no primaria en Show
 
             modelBuilder.Entity<Show>()
-          .HasOne(s => s.PreviousEpisode)
-          .WithOne(sd => sd.Show)
-          .HasForeignKey<PreviousEpisode>(sd => sd.Show_Id);
-
-            modelBuilder.Entity<PreviousEpisode>()
-        .HasKey(sd => sd.Show_Id);
+        .HasOne(s => s.PreviousEpisode)
+        .WithOne(sd => sd.Show)
+        .HasForeignKey<PreviousEpisode>(sd => sd.Show_Id) // Clave foránea en Schedule
+        .HasPrincipalKey<Show>(s => s.Id); // Clave principal no primaria en Show
 
             modelBuilder.Entity<Show>()
-          .HasOne(s => s.Rating)
-          .WithOne(sd => sd.Show)
-          .HasForeignKey<Rating>(sd => sd.Show_Id);
-
-            modelBuilder.Entity<Rating>()
-        .HasKey(sd => sd.Show_Id);
+        .HasOne(s => s.Rating)
+        .WithOne(sd => sd.Show)
+        .HasForeignKey<Rating>(sd => sd.Show_Id) // Clave foránea en Schedule
+        .HasPrincipalKey<Show>(s => s.Id); // Clave principal no primaria en Show
 
             modelBuilder.Entity<Show>()
-          .HasOne(s => s.Schedule)
-          .WithOne(sd => sd.Show)
-          .HasForeignKey<Schedule>(sd => sd.Show_Id);
-
-            modelBuilder.Entity<Schedule>()
-        .HasKey(sd => sd.Show_Id);
+        .HasOne(s => s.Schedule)
+        .WithOne(sd => sd.Show)
+        .HasForeignKey<Schedule>(sd => sd.Show_Id) // Clave foránea en Schedule
+        .HasPrincipalKey<Show>(s => s.Id); // Clave principal no primaria en Show
 
             modelBuilder.Entity<Show>()
-          .HasOne(s => s.WebChannel)
-          .WithOne(sd => sd.Show)
-          .HasForeignKey<WebChannel>(sd => sd.Show_Id);
-
-            modelBuilder.Entity<WebChannel>()
-        .HasKey(sd => sd.Show_Id);
+        .HasOne(s => s.WebChannel)
+        .WithOne(sd => sd.Show)
+        .HasForeignKey<WebChannel>(sd => sd.Show_Id) // Clave foránea en Schedule
+        .HasPrincipalKey<Show>(s => s.Id); // Clave principal no primaria en Show
 
 
             base.OnModelCreating(modelBuilder);

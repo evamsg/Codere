@@ -7,6 +7,11 @@ namespace Codere.Models.EntityConfig
         public static void SetShowEntityConfig(EntityTypeBuilder<Show> entityBuilder)
         {
             entityBuilder.HasKey( x => x.IdKey);
+
+            entityBuilder.Property(x => x.IdKey)
+                 .ValueGeneratedOnAdd()  // Indica que la columna es autonumérica
+                 .IsRequired();          // Asegura que la clave primaria no sea nula
+
             //entityBuilder.Property(x => x.Url).IsRequired();
             //entityBuilder.Property(x => x.Name).IsRequired();
             //entityBuilder.Property(x => x.Type).IsRequired();

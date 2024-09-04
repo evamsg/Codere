@@ -52,8 +52,11 @@ namespace Codere.Migrations
 
             modelBuilder.Entity("Codere.Models.DvdCountry", b =>
                 {
-                    b.Property<int>("Show_Id")
+                    b.Property<int>("Id_key")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_key"));
 
                     b.Property<string>("Code")
                         .HasColumnType("nvarchar(max)");
@@ -61,39 +64,39 @@ namespace Codere.Migrations
                     b.Property<int>("Id")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id_key")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_key"));
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Show_Id")
+                        .HasColumnType("int");
 
                     b.Property<string>("TimeZone")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Show_Id");
+                    b.HasKey("Id_key");
+
+                    b.HasIndex("Show_Id")
+                        .IsUnique();
 
                     b.ToTable("DvdCountries");
                 });
 
             modelBuilder.Entity("Codere.Models.External", b =>
                 {
-                    b.Property<int>("Show_Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
                     b.Property<int>("Id_key")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_key"));
 
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
                     b.Property<string>("Imdb")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Show_Id")
+                        .HasColumnType("int");
 
                     b.Property<int?>("Thetvdb")
                         .HasColumnType("int");
@@ -101,24 +104,24 @@ namespace Codere.Migrations
                     b.Property<int?>("Tvrage")
                         .HasColumnType("int");
 
-                    b.HasKey("Show_Id");
+                    b.HasKey("Id_key");
+
+                    b.HasIndex("Show_Id")
+                        .IsUnique();
 
                     b.ToTable("Externals");
                 });
 
             modelBuilder.Entity("Codere.Models.Image", b =>
                 {
-                    b.Property<int?>("Show_Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
                     b.Property<int>("Id_key")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_key"));
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
 
                     b.Property<string>("Medium")
                         .HasColumnType("nvarchar(max)");
@@ -126,24 +129,28 @@ namespace Codere.Migrations
                     b.Property<string>("Original")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Show_Id");
+                    b.Property<int?>("Show_Id")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id_key");
+
+                    b.HasIndex("Show_Id")
+                        .IsUnique()
+                        .HasFilter("[Show_Id] IS NOT NULL");
 
                     b.ToTable("Images");
                 });
 
             modelBuilder.Entity("Codere.Models.Link", b =>
                 {
-                    b.Property<int?>("Show_Id")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
                     b.Property<int>("Id_key")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_key"));
+
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
 
                     b.Property<string>("Previousepisode_Href")
                         .HasColumnType("nvarchar(max)");
@@ -154,15 +161,25 @@ namespace Codere.Migrations
                     b.Property<string>("Self_Href")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Show_Id");
+                    b.Property<int?>("Show_Id")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id_key");
+
+                    b.HasIndex("Show_Id")
+                        .IsUnique()
+                        .HasFilter("[Show_Id] IS NOT NULL");
 
                     b.ToTable("Links");
                 });
 
             modelBuilder.Entity("Codere.Models.Network", b =>
                 {
-                    b.Property<int>("Show_Id")
+                    b.Property<int>("Id_key")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_key"));
 
                     b.Property<int?>("Country_Id")
                         .HasColumnType("int");
@@ -170,27 +187,30 @@ namespace Codere.Migrations
                     b.Property<int>("Id")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id_key")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_key"));
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OfficialSite")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Show_Id");
+                    b.Property<int>("Show_Id")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id_key");
+
+                    b.HasIndex("Show_Id")
+                        .IsUnique();
 
                     b.ToTable("Networks");
                 });
 
             modelBuilder.Entity("Codere.Models.PreviousEpisode", b =>
                 {
-                    b.Property<int>("Show_Id")
+                    b.Property<int>("Id_key")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_key"));
 
                     b.Property<string>("Href")
                         .HasColumnType("nvarchar(max)");
@@ -198,24 +218,27 @@ namespace Codere.Migrations
                     b.Property<int>("Id")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id_key")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_key"));
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Show_Id");
+                    b.Property<int>("Show_Id")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id_key");
+
+                    b.HasIndex("Show_Id")
+                        .IsUnique();
 
                     b.ToTable("PreviousEpisodes");
                 });
 
             modelBuilder.Entity("Codere.Models.Rating", b =>
                 {
-                    b.Property<int>("Show_Id")
+                    b.Property<int>("Id_key")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_key"));
 
                     b.Property<double?>("Average")
                         .HasColumnType("float");
@@ -223,21 +246,24 @@ namespace Codere.Migrations
                     b.Property<int>("Id")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id_key")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int>("Show_Id")
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_key"));
+                    b.HasKey("Id_key");
 
-                    b.HasKey("Show_Id");
+                    b.HasIndex("Show_Id")
+                        .IsUnique();
 
                     b.ToTable("Ratings");
                 });
 
             modelBuilder.Entity("Codere.Models.Schedule", b =>
                 {
-                    b.Property<int?>("Show_Id")
+                    b.Property<int>("Id_key")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_key"));
 
                     b.Property<string>("Day")
                         .HasColumnType("nvarchar(max)");
@@ -245,16 +271,17 @@ namespace Codere.Migrations
                     b.Property<int>("Id")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id_key")
-                        .ValueGeneratedOnAdd()
+                    b.Property<int?>("Show_Id")
                         .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_key"));
 
                     b.Property<string>("Time")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Show_Id");
+                    b.HasKey("Id_key");
+
+                    b.HasIndex("Show_Id")
+                        .IsUnique()
+                        .HasFilter("[Show_Id] IS NOT NULL");
 
                     b.ToTable("Schedules");
                 });
@@ -306,8 +333,8 @@ namespace Codere.Migrations
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double?>("Updated")
-                        .HasColumnType("float");
+                    b.Property<long?>("Updated")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Url")
                         .HasColumnType("nvarchar(max)");
@@ -344,8 +371,11 @@ namespace Codere.Migrations
 
             modelBuilder.Entity("Codere.Models.WebChannel", b =>
                 {
-                    b.Property<int>("Show_Id")
+                    b.Property<int>("Id_key")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_key"));
 
                     b.Property<int?>("Country_Id")
                         .HasColumnType("int");
@@ -353,19 +383,19 @@ namespace Codere.Migrations
                     b.Property<int>("Id")
                         .HasColumnType("int");
 
-                    b.Property<int>("Id_key")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id_key"));
-
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OfficialSite")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Show_Id");
+                    b.Property<int>("Show_Id")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id_key");
+
+                    b.HasIndex("Show_Id")
+                        .IsUnique();
 
                     b.ToTable("WebChannels");
                 });
@@ -375,6 +405,7 @@ namespace Codere.Migrations
                     b.HasOne("Codere.Models.Show", "Show")
                         .WithOne("DvdCountry")
                         .HasForeignKey("Codere.Models.DvdCountry", "Show_Id")
+                        .HasPrincipalKey("Codere.Models.Show", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -386,6 +417,7 @@ namespace Codere.Migrations
                     b.HasOne("Codere.Models.Show", "Show")
                         .WithOne("External")
                         .HasForeignKey("Codere.Models.External", "Show_Id")
+                        .HasPrincipalKey("Codere.Models.Show", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -397,8 +429,7 @@ namespace Codere.Migrations
                     b.HasOne("Codere.Models.Show", "Show")
                         .WithOne("Image")
                         .HasForeignKey("Codere.Models.Image", "Show_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasPrincipalKey("Codere.Models.Show", "Id");
 
                     b.Navigation("Show");
                 });
@@ -408,8 +439,7 @@ namespace Codere.Migrations
                     b.HasOne("Codere.Models.Show", "Show")
                         .WithOne("Link")
                         .HasForeignKey("Codere.Models.Link", "Show_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasPrincipalKey("Codere.Models.Show", "Id");
 
                     b.Navigation("Show");
                 });
@@ -419,6 +449,7 @@ namespace Codere.Migrations
                     b.HasOne("Codere.Models.Show", "Show")
                         .WithOne("Network")
                         .HasForeignKey("Codere.Models.Network", "Show_Id")
+                        .HasPrincipalKey("Codere.Models.Show", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -430,6 +461,7 @@ namespace Codere.Migrations
                     b.HasOne("Codere.Models.Show", "Show")
                         .WithOne("PreviousEpisode")
                         .HasForeignKey("Codere.Models.PreviousEpisode", "Show_Id")
+                        .HasPrincipalKey("Codere.Models.Show", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -441,6 +473,7 @@ namespace Codere.Migrations
                     b.HasOne("Codere.Models.Show", "Show")
                         .WithOne("Rating")
                         .HasForeignKey("Codere.Models.Rating", "Show_Id")
+                        .HasPrincipalKey("Codere.Models.Show", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -452,8 +485,7 @@ namespace Codere.Migrations
                     b.HasOne("Codere.Models.Show", "Show")
                         .WithOne("Schedule")
                         .HasForeignKey("Codere.Models.Schedule", "Show_Id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasPrincipalKey("Codere.Models.Show", "Id");
 
                     b.Navigation("Show");
                 });
@@ -463,6 +495,7 @@ namespace Codere.Migrations
                     b.HasOne("Codere.Models.Show", "Show")
                         .WithOne("WebChannel")
                         .HasForeignKey("Codere.Models.WebChannel", "Show_Id")
+                        .HasPrincipalKey("Codere.Models.Show", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

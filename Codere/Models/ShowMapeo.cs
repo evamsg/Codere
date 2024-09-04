@@ -22,7 +22,7 @@
         public PreviousEpisode? PreviousEpisode { get; set; }
         public int? Weight { get; set; }
         public string? Summary { get; set; }
-        public Double? Updated { get; set; }
+        public long? Updated { get; set; }
         public double? Rating_Average { get; set; }
         public Network? Network { get; set; }
         public WebChannel? WebChannel { get; set; }

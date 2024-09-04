@@ -93,6 +93,7 @@ namespace Codere.Services
                     {
                         WebChannel webChannel = new WebChannel();
                         webChannel.Id = show.WebChannel.Id;
+                        webChannel.Show_Id = show.Id;
                         webChannel.Name = show.WebChannel.Name;
                         webChannel.Country_Id = show.WebChannel.Id;
                         webChannel.OfficialSite = show.WebChannel.OfficialSite;
