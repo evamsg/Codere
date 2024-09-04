@@ -22,7 +22,8 @@ public class AdminController : ControllerBase
         return Ok("Job executed successfully.");
     }
 
-    [HttpGet()]
+
+    [HttpGet("shows")]
     public async Task<IActionResult> ObtenerShow()
     {
         var datos = await _tvMazeService.ObtenerShow();

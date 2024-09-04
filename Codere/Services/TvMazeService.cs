@@ -389,7 +389,16 @@ namespace Codere.Services
 
         public async Task<List<Show>> ObtenerShow()
         {
-            return await _context.Shows.ToListAsync();
+            // return await _context.Shows.ToListAsync();
+            return await _context.Shows.Include(s => s.WebChannel) // Carga WebChannel
+                .Include(s => s.Schedule) // Carga Schedule
+                .Include(s => s.Network) // Carga Network
+                .Include(s => s.External) // Carga External
+                .Include(s => s.Image) // Carga Image
+                .Include(s => s.Link) // Carga Link
+                .Include(s => s.DvdCountry) // Carga DvdCountry
+                .Include(s => s.PreviousEpisode) // Carga PreviousEpisode
+                .Include(s => s.Rating).ToListAsync(); // Carga Rating
         }
     }
 }

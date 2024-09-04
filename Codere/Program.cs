@@ -11,13 +11,14 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+//builder.Services.AddControllers(x => x.Filters.Add<ApiKeyAuthorizeAttribute>());
+builder.Services.AddScoped<ApiKeyAuthorizeAttribute>();
 
 builder.Services.AddScoped<IContextoDB, ContextoDB>();
 
 builder.Services.AddDbContext<ContextoDB>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("CadenaConexion")));
 
-//builder.Services.AddScoped<ITvMazeService, TvMazeService>();
 builder.Services.AddHttpClient<ITvMazeService, TvMazeService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -47,9 +48,6 @@ builder.Services.AddSwaggerGen(c =>
         }
     });
 });
-builder.Services.AddControllers(x => x.Filters.Add<ApiKeyAuthorizeAttribute>());
-builder.Services.AddScoped<ApiKeyAuthorizeAttribute>();
-
 
 var app = builder.Build();
 
@@ -62,10 +60,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+//app.UseAuthorization();
 
 // Insertar el middleware para autenticación con API Key
-app.UseMiddleware<ApiKeyMiddleware>();
+//app.UseMiddleware<ApiKeyMiddleware>();
 
 app.MapControllers();
 
