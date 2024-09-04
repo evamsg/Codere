@@ -18,5 +18,6 @@ namespace Codere.Models
 
         [NotMapped]
         public Show Show { get; set; }
+
     }
 }

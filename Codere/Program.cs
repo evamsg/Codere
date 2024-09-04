@@ -11,8 +11,15 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+
 //builder.Services.AddControllers(x => x.Filters.Add<ApiKeyAuthorizeAttribute>());
 builder.Services.AddScoped<ApiKeyAuthorizeAttribute>();
+
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
+    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+    options.JsonSerializerOptions.MaxDepth = 64; // Ajusta el valor según sea necesario
+});
 
 builder.Services.AddScoped<IContextoDB, ContextoDB>();
 

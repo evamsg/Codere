@@ -41,12 +41,13 @@ namespace Codere.Models
         [NotMapped]
         // Relación uno a uno con Link (enlaces relacionados)
         public Link Link { get; set; }
-
+        [NotMapped]
         public DvdCountry DvdCountry { get; set; }
+        [NotMapped]
         public PreviousEpisode PreviousEpisode { get; set; }
-
+        [NotMapped]
         public Rating Rating { get; set; }
-
+        [NotMapped]
         public WebChannel WebChannel { get; set; }
 
     }
