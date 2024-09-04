@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Codere.Migrations
 {
     [DbContext(typeof(ContextoDB))]
-    [Migration("20240904092614_Inicial")]
+    [Migration("20240904100014_Inicial")]
     partial class Inicial
     {
         /// <inheritdoc />
@@ -408,7 +408,6 @@ namespace Codere.Migrations
                     b.HasOne("Codere.Models.Show", "Show")
                         .WithOne("DvdCountry")
                         .HasForeignKey("Codere.Models.DvdCountry", "Show_Id")
-                        .HasPrincipalKey("Codere.Models.Show", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -420,7 +419,6 @@ namespace Codere.Migrations
                     b.HasOne("Codere.Models.Show", "Show")
                         .WithOne("External")
                         .HasForeignKey("Codere.Models.External", "Show_Id")
-                        .HasPrincipalKey("Codere.Models.Show", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -431,8 +429,7 @@ namespace Codere.Migrations
                 {
                     b.HasOne("Codere.Models.Show", "Show")
                         .WithOne("Image")
-                        .HasForeignKey("Codere.Models.Image", "Show_Id")
-                        .HasPrincipalKey("Codere.Models.Show", "Id");
+                        .HasForeignKey("Codere.Models.Image", "Show_Id");
 
                     b.Navigation("Show");
                 });
@@ -441,8 +438,7 @@ namespace Codere.Migrations
                 {
                     b.HasOne("Codere.Models.Show", "Show")
                         .WithOne("Link")
-                        .HasForeignKey("Codere.Models.Link", "Show_Id")
-                        .HasPrincipalKey("Codere.Models.Show", "Id");
+                        .HasForeignKey("Codere.Models.Link", "Show_Id");
 
                     b.Navigation("Show");
                 });
@@ -452,7 +448,6 @@ namespace Codere.Migrations
                     b.HasOne("Codere.Models.Show", "Show")
                         .WithOne("Network")
                         .HasForeignKey("Codere.Models.Network", "Show_Id")
-                        .HasPrincipalKey("Codere.Models.Show", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -464,7 +459,6 @@ namespace Codere.Migrations
                     b.HasOne("Codere.Models.Show", "Show")
                         .WithOne("PreviousEpisode")
                         .HasForeignKey("Codere.Models.PreviousEpisode", "Show_Id")
-                        .HasPrincipalKey("Codere.Models.Show", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -476,7 +470,6 @@ namespace Codere.Migrations
                     b.HasOne("Codere.Models.Show", "Show")
                         .WithOne("Rating")
                         .HasForeignKey("Codere.Models.Rating", "Show_Id")
-                        .HasPrincipalKey("Codere.Models.Show", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -487,8 +480,7 @@ namespace Codere.Migrations
                 {
                     b.HasOne("Codere.Models.Show", "Show")
                         .WithOne("Schedule")
-                        .HasForeignKey("Codere.Models.Schedule", "Show_Id")
-                        .HasPrincipalKey("Codere.Models.Show", "Id");
+                        .HasForeignKey("Codere.Models.Schedule", "Show_Id");
 
                     b.Navigation("Show");
                 });
@@ -498,7 +490,6 @@ namespace Codere.Migrations
                     b.HasOne("Codere.Models.Show", "Show")
                         .WithOne("WebChannel")
                         .HasForeignKey("Codere.Models.WebChannel", "Show_Id")
-                        .HasPrincipalKey("Codere.Models.Show", "Id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

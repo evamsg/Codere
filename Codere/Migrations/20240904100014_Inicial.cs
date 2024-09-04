@@ -69,7 +69,6 @@ namespace Codere.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Shows", x => x.IdKey);
-                    table.UniqueConstraint("AK_Shows_Id", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -91,7 +90,7 @@ namespace Codere.Migrations
                         name: "FK_DvdCountries_Shows_Show_Id",
                         column: x => x.Show_Id,
                         principalTable: "Shows",
-                        principalColumn: "Id",
+                        principalColumn: "IdKey",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -114,7 +113,7 @@ namespace Codere.Migrations
                         name: "FK_Externals_Shows_Show_Id",
                         column: x => x.Show_Id,
                         principalTable: "Shows",
-                        principalColumn: "Id",
+                        principalColumn: "IdKey",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -136,7 +135,7 @@ namespace Codere.Migrations
                         name: "FK_Images_Shows_Show_Id",
                         column: x => x.Show_Id,
                         principalTable: "Shows",
-                        principalColumn: "Id");
+                        principalColumn: "IdKey");
                 });
 
             migrationBuilder.CreateTable(
@@ -158,7 +157,7 @@ namespace Codere.Migrations
                         name: "FK_Links_Shows_Show_Id",
                         column: x => x.Show_Id,
                         principalTable: "Shows",
-                        principalColumn: "Id");
+                        principalColumn: "IdKey");
                 });
 
             migrationBuilder.CreateTable(
@@ -180,7 +179,7 @@ namespace Codere.Migrations
                         name: "FK_Networks_Shows_Show_Id",
                         column: x => x.Show_Id,
                         principalTable: "Shows",
-                        principalColumn: "Id",
+                        principalColumn: "IdKey",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -202,7 +201,7 @@ namespace Codere.Migrations
                         name: "FK_PreviousEpisodes_Shows_Show_Id",
                         column: x => x.Show_Id,
                         principalTable: "Shows",
-                        principalColumn: "Id",
+                        principalColumn: "IdKey",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -223,7 +222,7 @@ namespace Codere.Migrations
                         name: "FK_Ratings_Shows_Show_Id",
                         column: x => x.Show_Id,
                         principalTable: "Shows",
-                        principalColumn: "Id",
+                        principalColumn: "IdKey",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -245,7 +244,7 @@ namespace Codere.Migrations
                         name: "FK_Schedules_Shows_Show_Id",
                         column: x => x.Show_Id,
                         principalTable: "Shows",
-                        principalColumn: "Id");
+                        principalColumn: "IdKey");
                 });
 
             migrationBuilder.CreateTable(
@@ -267,7 +266,7 @@ namespace Codere.Migrations
                         name: "FK_WebChannels_Shows_Show_Id",
                         column: x => x.Show_Id,
                         principalTable: "Shows",
-                        principalColumn: "Id",
+                        principalColumn: "IdKey",
                         onDelete: ReferentialAction.Cascade);
                 });
 

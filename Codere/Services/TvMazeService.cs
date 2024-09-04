@@ -71,7 +71,7 @@ namespace Codere.Services
                     if(show.Schedule != null)
                     {
                         Schedule schedule = new Schedule();
-                        schedule.Show_Id = show.Id;
+                        schedule.Show_Id = nuevoShow.IdKey;
                         schedule.Time = show.Schedule.Time;
                         schedule.Day = string.Join(", ", show.Schedule.Day);
 
@@ -83,7 +83,7 @@ namespace Codere.Services
                     {
                         Rating rating = new Rating();
                         rating.Average = show.Rating.Average;
-                        rating.Show_Id = show.Id;
+                        rating.Show_Id = nuevoShow.IdKey;
 
                         _context.Ratings.Add(rating);
                         await _context.SaveChangesAsync(true);
@@ -93,7 +93,7 @@ namespace Codere.Services
                     {
                         WebChannel webChannel = new WebChannel();
                         webChannel.Id = show.WebChannel.Id;
-                        webChannel.Show_Id = show.Id;
+                        webChannel.Show_Id = nuevoShow.IdKey;
                         webChannel.Name = show.WebChannel.Name;
                         webChannel.Country_Id = show.WebChannel.Id;
                         webChannel.OfficialSite = show.WebChannel.OfficialSite;
@@ -116,7 +116,7 @@ namespace Codere.Services
 
                     if (show.DvdCountry != null) {
                         DvdCountry dvdCountry = new DvdCountry();
-                        dvdCountry.Show_Id = show.Id;
+                        dvdCountry.Show_Id = nuevoShow.IdKey;
                         dvdCountry.Name = show.DvdCountry.Name;
                         dvdCountry.Code = show.DvdCountry.Code;
                         dvdCountry.TimeZone = show.DvdCountry.TimeZone;
@@ -128,7 +128,7 @@ namespace Codere.Services
                     if (show.Externals != null)
                     {
                         External external = new External();
-                        external.Show_Id = show.Id;
+                        external.Show_Id = nuevoShow.IdKey;
                         external.Tvrage = show.Externals.Tvrage;
                         external.Thetvdb = show.Externals.Thetvdb;
                         external.Imdb = show.Externals.Imdb;
@@ -140,7 +140,7 @@ namespace Codere.Services
                     if (show.Image != null)
                     {
                         Image image = new Image();
-                        image.Show_Id = show.Id;
+                        image.Show_Id = nuevoShow.IdKey;
                         image.Medium = show.Image.Medium;
                         image.Original = show.Image.Original;
 
@@ -152,7 +152,7 @@ namespace Codere.Services
                     if(show.Link != null)
                     {
                         Link link = new Link();
-                        link.Show_Id = show.Id;
+                        link.Show_Id = nuevoShow.IdKey;
                         link.Self_Href = show.Link.Self_Href;
 
                         _context.Links.Add(link);
@@ -162,7 +162,7 @@ namespace Codere.Services
                     if (show.PreviousEpisode != null)
                     {
                         PreviousEpisode episode = new PreviousEpisode();
-                        episode.Show_Id = show.Id;
+                        episode.Show_Id = nuevoShow.IdKey;
                         episode.Href = show.PreviousEpisode.Href;
                         episode.Name = show.PreviousEpisode.Name;
 
@@ -174,7 +174,7 @@ namespace Codere.Services
                     {
                         Network network = new Network();
                         network.Id = show.Network.Id;
-                        network.Show_Id = show.Id;
+                        network.Show_Id = nuevoShow.IdKey;
                         network.Name = show.Network.Name;
                         network.OfficialSite = show.Network.OfficialSite;
 
