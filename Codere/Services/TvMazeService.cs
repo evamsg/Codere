@@ -384,9 +384,9 @@ namespace Codere.Services
             }
         }
 
-        //public Task ObtenerShow()
-        //{
-           
-        //}
+        public async Task<List<Show>> ObtenerShow()
+        {
+            return await _context.Shows.ToListAsync();
+        }
     }
 }

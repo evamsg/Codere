@@ -1,9 +1,11 @@
-﻿namespace Codere.Services
+﻿using Codere.Models;
+
+namespace Codere.Services
 {
     public interface ITvMazeService
     {
         Task FetchAndStoreShowsAsync();
 
-        //Task ObtenerShow();
+        Task<List<Show>> ObtenerShow();
     }
 }

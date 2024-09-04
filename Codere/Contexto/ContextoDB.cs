@@ -83,6 +83,10 @@ namespace Codere.Contexto
         .ValueGeneratedOnAdd();
 
             modelBuilder.Entity<Show>()
+        .Property(x => x.IdKey)
+        .ValueGeneratedOnAdd();
+
+            modelBuilder.Entity<Show>()
            .HasOne(s => s.DvdCountry)
            .WithOne(sd => sd.Show)
            .HasForeignKey<DvdCountry>(sd => sd.Show_Id);

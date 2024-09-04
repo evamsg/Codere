@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Codere.Migrations
 {
     [DbContext(typeof(ContextoDB))]
-    [Migration("20240904070012_Inicial")]
+    [Migration("20240904072751_Inicial")]
     partial class Inicial
     {
         /// <inheritdoc />
